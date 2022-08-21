@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "yekan";
+    direction:rtl;
+}
+
+body{
+    background-image: linear-gradient(to bottom,rgb(176, 176, 176),rgb(133, 133, 227));
+    height: 100vh;
+}
+
+.navbar{
+    border-radius:30px;
+}
+
+.nav-item{
+    padding: 10px 30px;
+}
+
+.navbar-brand{
+    direction:ltr;
+}
+
+
+
+/* @media screen and (min-width: 600px) and (max-width:1200){
+    a{
+        font-size: unset;
+        font-size: 10px;
+    }
+} */

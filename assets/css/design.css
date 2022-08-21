@@ -1,0 +1,51 @@
+*{
+    font-family: "yekan";
+    text-align: center;
+}
+
+body{
+    height:100vh;
+    background-image: linear-gradient(to right,rgb(95, 95, 203),rgb(95, 42, 81));
+}
+
+a{
+    text-decoration: none;
+    color:blueviolet;
+}
+
+
+.login-form{
+
+    border:1px solid gray;
+    border-radius:30px;
+    /* padding:30px; */
+    background-color:aliceblue;
+    /* margin:15% 0%; */
+}
+
+.form-control{
+    text-align:right;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.entry{
+    width:100%;
+}
+
+.forget-password{
+    position: relative;
+    left: 30px;
+}
+
+@media(min-width:576px){
+    .login-form{
+        width: 400px;
+    }
+}
+
+
+
+
+
+

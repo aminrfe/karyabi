@@ -1,0 +1,9 @@
+RewriteEngine On
+
+RewriteRule ^(assets)($|/) - [L]
+
+
+RewriteRule ^(.*)?$ index.php?request=$1 [NC,L,QSA]
+
+
+

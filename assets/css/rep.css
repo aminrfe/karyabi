@@ -1,0 +1,26 @@
+*{
+    font-family: "yekan";
+    direction: rtl;
+}
+
+.rep-txt{
+    text-align: center;
+    margin: 50px;
+}
+
+.table-bordered{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.body-color{
+    background-color:rgb(246, 246, 246);
+}
+
+td{
+    width: 0;
+}
+
+.btn{
+    margin:5px;
+}

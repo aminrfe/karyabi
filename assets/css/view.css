@@ -1,0 +1,59 @@
+* {
+    font-family: "yekan";
+    direction: rtl;
+    margin: 0;
+}
+
+body {
+    background-image: linear-gradient(to bottom, rgb(234, 234, 234), rgb(91, 167, 255));
+}
+
+.row {
+    padding: 10px 0px;
+}
+
+.fix-position {
+    position: relative;
+    right: -30px;
+}
+
+.right-contents {
+
+    background-color: aliceblue;
+    text-align: right;
+    padding: 0px 30px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+.contents {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-contents {
+    text-align: right;
+    background-color: aliceblue;
+    padding-top: 10px;
+    margin-bottom: 20px;
+}
+
+.advertise-dsc {
+    font-size: 18px;
+    color: rgb(108, 108, 108);
+}
+
+
+
+
+.btn {
+    width: 30%;
+    margin-top: 50px;
+}
+
+.labels{
+    background-color:rgb(182, 182, 182);
+    padding:8px;
+    border-radius:10px;
+    width: 30%;
+}

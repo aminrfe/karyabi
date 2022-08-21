@@ -1,0 +1,63 @@
+*{
+    direction: rtl;
+    box-sizing: border-box;
+    font-family: "yekan";
+}
+
+body{
+    height:max-content;
+    background-image: linear-gradient(to bottom, rgb(122, 187, 193) , rgb(220, 220, 220));
+    background-repeat: repeat;
+}
+
+.header{
+    text-align: center;
+    background-color: rgb(254, 254, 254);
+    padding:15px;
+    border-radius: 10px;
+}
+
+.label-position{
+    position: relative;
+    right:5px;
+}
+
+.phone-number{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+.form-control , #advertisement-source{
+    border:2px solid rgb(126, 126, 126);
+}
+
+.example1{
+    width: 100%;
+    padding: 6px;
+    border-radius: 8px;
+}
+
+.datepicker-plot-area{
+    background-color:rgb(241, 240, 240);
+    width:300px;
+}
+
+
+.state-select{
+    height:55px;
+    border:2px solid rgb(126, 126, 126);
+}
+
+.state-fix-position{
+    margin-top:-30px;
+}
+
+@media(max-width:768px)
+{
+    .state-fix-position{
+        margin-top: unset;
+        font-size: 18px;
+        width: 100%;
+    }
+}
