@@ -7,9 +7,10 @@ if(isset($_GET['request'])){
         $routes = explode('/',$_GET['request']);
         $len = count($routes);
         $main_route = $routes[0];
-        if($main_route == "ajax"){
+        if($main_route == "ajax") {
             include("ajax-req.php");
-        }else{
+        }
+        else {
             $main_route = str_replace("-","_",$main_route);
             if(file_exists("view/$main_route.php")) {
                     if($len == 2 && !empty($routes[1])) {
