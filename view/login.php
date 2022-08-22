@@ -14,19 +14,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = $val->validate($_POST, $validation);
     if (count($errors) == 0) {
       $username = $_POST["username"];
-      $hash_password = md5($_POST["password"]);
-      $query = "SELECT * FROM users WHERE u_username='$username' AND u_password ='$hash_password'";
+      $encode_password = base64_encode($_POST["password"]);
+      $query = "SELECT * FROM users WHERE u_username='$username' AND u_password ='$encode_password'";
       $result = $conn->query($query);
       if ($result->num_rows == 1) {
         $user = $result->fetch_assoc();
 
         $_SESSION["user"] = $user;
         $_SESSION["start"] = time();
-        $_SESSION["expire"] = $_SESSION["start"] + (12 * 60 * 60);
+        $_SESSION["expire"] = $_SESSION["start"] + (90 * 24 * 60 * 60);
 
         if (!empty($_POST["remember"])) {
-          setcookie("username", $username, time() + (12 * 60 * 60));
-          setcookie("password", $_POST["password"], time() + (12 * 60 * 60));
+          setcookie("username", $username, time() + (90 * 24 * 60 * 60));
+          setcookie("password", $_POST["password"], time() + (90 * 24 * 60 * 60));
         }
         elseif (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
             setcookie("username", "");

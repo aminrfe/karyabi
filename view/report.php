@@ -58,7 +58,7 @@ else {
                         <th>دسته بندی</th>
                         <th>استان</th>
                         <th>شهر</th>
-                        <th>بررسی</th>
+                        <th>عملیات</th>
                     </tr>
                 </thead>
                 <tbody class="body-color">
@@ -81,9 +81,9 @@ else {
                         <?php echo $row["ct_name"]?>
                         </td>
                         <td>
-                            <a href='edit_ad/<?php echo $row['ad_id']?>'><button class="btn btn-dark"><i class="fa-regular fa-pen-to-square"></i> ویرایش</button></a>
-                            <a href='del_ad/<?php echo $row['ad_id']?>'><button class="btn btn-danger"><i class="fa-regular fa-trash-can"></i> حذف </button></a>
-                            <a href='view_ad/<?php echo $row['ad_id']?>'><button class="btn btn-primary"><i class="fa-regular fa-eye"></i> مشاهده </button></a>
+                            <a href='edit-ad/<?php echo $row['ad_id']?>'><button class="btn btn-dark"><i class="fa-regular fa-pen-to-square"></i> ویرایش</button></a>
+                            <a href='del-ad/<?php echo $row['ad_id']?>'><button class="btn btn-danger"><i class="fa-regular fa-trash-can"></i> حذف </button></a>
+                            <a href='view-ad/<?php echo $row['ad_id']?>'><button class="btn btn-primary"><i class="fa-regular fa-eye"></i> مشاهده </button></a>
                         </td>
                     </tr>
         <?php $i++; } } ?>

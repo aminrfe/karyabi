@@ -1,22 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION["user"])) {
-  header('Location:login');
-  die();
-}
-elseif (isset($_SESSION["start"]) && time() > $_SESSION['expire']) {
-  session_destroy();
-  header('Location:login');
-  die();
-}
-else {
- $user = $_SESSION["user"];
- 
- 
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,12 +18,15 @@ else {
 
   <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
     <div class="container">
-      <a class="navbar-brand" href="#">صفحه ی اصلی</a>
+      <a class="navbar-brand">صفحه ی اصلی</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="navbar">صفحه اصلی</a>
+            </li>
           <li class="nav-item">
             <a class="nav-link" href="report">گزارش</a>
           </li>
@@ -55,16 +39,11 @@ else {
           <li class="nav-item">
             <a class="nav-link" href="users">کاربران</a>
           </li> 
-          <li class="nav-item">
-            <a class="nav-link" href="#">خروج</a>
-          </li>
         </ul>
         
       </div>
     </div>
   </nav>
-
-  <h2 class="mt-sm-5 m-3">به صفحه اصلی خوش آمدید.</h2>
 
 
 

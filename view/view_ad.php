@@ -46,7 +46,8 @@ else {
 <body>
 
     <div class="container">
-        <div class="row mt-5 contents">
+    <a href="../report"><button type="button" class="btn btn-danger mt-5"><i class="fa-solid fa-rotate-left"></i> بازگشت </button></a>
+        <div class="row contents">
             <div class="col-lg-6 right-contents">
                 <h3 class="mt-4 col-8"><?php echo $row["ad_title"]?></h3>
 
@@ -121,11 +122,17 @@ else {
                 </div>
 
                 <div>
-                    <h5>برچسب ها</h5>
-                    <p class="labels mt-4"><?php echo $row["ad_labels"]?></p>
+                    <h5>برچسب ها
+                    <br><?php
+                     $arr = explode("#", $row["ad_labels"]);
+                     foreach($arr as $label) {
+                        if($label)
+                            echo  "<span class=\"badge bg-secondary\">".'#'.trim($label)."</span> ";
+                     }
+                     ?>
+                    </h5>
                 </div>
 
-                <!-- <button class="btn btn-success mt-2 mb-4"><i class="fa-brands fa-whatsapp"></i> تماس با ما </button> -->
             </div>
 
 

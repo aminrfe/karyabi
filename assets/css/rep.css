@@ -3,6 +3,11 @@
     direction: rtl;
 }
 
+body{
+    background-color: rgb(227, 196, 255);
+}
+
+
 .rep-txt{
     text-align: center;
     margin: 50px;

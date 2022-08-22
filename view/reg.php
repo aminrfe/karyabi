@@ -2,6 +2,7 @@
 session_start();
 require('config.php');
 require('validation.php');
+require('jdf.php');
 
 if (!isset($_SESSION["user"])) {
   header('Location:login');
@@ -13,7 +14,8 @@ elseif (isset($_SESSION["start"]) && time() > $_SESSION['expire']) {
   die();
 }
 elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["source"]) && isset($_POST["publishdate"]) && isset($_POST["category"]) && isset($_POST["title"]) && isset($_POST["province"]) && isset($_POST["city"])) {
+    var_dump($_POST);
+    if (isset($_POST["source"]) && isset($_POST["publishdate"]) && isset($_POST["category"]) && isset($_POST["title"]) && isset($_POST["selProvince"]) && isset($_POST["selCity"])) {
         $validation = [
         'category'=>['required','isEmpty|isPersian','دسته بندي آگهی الزامی است|دسته بندي آگهی باید فارسی باشد'],
         'title'=>['required','isEmpty|isPersian','عنوان آگهی الزامی است|عنوان آگهی باید فارسی باشد'],
@@ -22,13 +24,9 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
         $val = new validation();
         $errors = $val->validate($_POST, $validation);
         if (count($errors) == 0) {
-
-        $as_name = $_POST["source"];
-        $query = "SELECT * FROM advertising_sources WHERE as_name='$as_name'";
-        $result = ($conn->query($query))->fetch_assoc(); 
-        $source_id = $result["as_id"];
-        // $publish_date = $_POST["publishdate"];
-        $publish_date = time();
+ 
+        $ad_source = $_POST["source"];
+        $publish_date = $_POST["publishdate"] / 1000;
         $salary = $_POST["salary"];
         $min_salary = $_POST["minsalary"];
         $max_salary = $_POST["maxsalary"];
@@ -37,25 +35,16 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
         $startworkhour = $_POST["startworkhour"];
         $finishworkhour = $_POST["finishworkhour"];
         $phone = $_POST["phone"];
-        $collection = $_POST["collection"];
+        $collection = $_POST["txtCollection"];
         $details = $_POST["details"];
-        
-        $p_name = $_POST["province"];
-        $query = "SELECT * FROM provinces WHERE p_name='$p_name'";
-        $result = ($conn->query($query))->fetch_assoc(); 
-        $ad_province = $result["p_id"];
-
-        $ct_name = $_POST["city"];
-        $query = "SELECT * FROM cities WHERE ct_province='$ad_province' AND ct_name='$ct_name'";
-        $result = ($conn->query($query))->fetch_assoc(); 
-        $ad_city = $result["ct_id"];
-    
+        $ad_province = $_POST["selProvince"];
+        $ad_city = $_POST["selCity"];
         $address = $_POST["address"];
         $labels = $_POST["labels"];
         $insertdate = time();
 
         $query = "INSERT INTO advertisings (ad_source, ad_publishdate, ad_salary, ad_minsalary, ad_maxsalary, ad_category, ad_title, ad_startworkhour, ad_finishworkhour, ad_phone, ad_collection, ad_details, ad_province, ad_city, ad_address, ad_labels, ad_insertdate) 
-        VALUES ('$source_id','$publish_date','$salary','$min_salary','$max_salary','$category','$title','$startworkhour','$finishworkhour','$phone','$collection','$details','$ad_province','$ad_city','$address','$labels','$insertdate')";
+        VALUES ('$ad_source','$publish_date','$salary','$min_salary','$max_salary','$category','$title','$startworkhour','$finishworkhour','$phone','$collection','$details','$ad_province','$ad_city','$address','$labels','$insertdate')";
         $result = $conn->query($query); 
         if ($result) {
             header('Location:navbar');    
@@ -108,20 +97,23 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $query = "SELECT * FROM advertising_sources";
                             $result = $conn->query($query);
                             while ($row = $result->fetch_assoc()) {
-                                $as_name = $row["as_name"];
-                                echo "<option>". "$as_name"."</option>";
+                                $source_id = $row["as_id"];
+                                $source_name = $row["as_name"];
+                                echo "<option value=\"" . $source_id . "\">".$source_name . "</option>";
                             }
                             ?>
                         </select>
                     </div>
                             
 
-                    <div class="col-md-6 mt-3">
-                        <label for="calendar" class="form-label d-flex justify-content-center">تاریخ آگهی
+                <div class="col-md-6 mt-3">
+                        <label for="calendar" class="form-label d-flex justify-content-center" value="">تاریخ آگهی
                             را انتخاب کنید</label>
-                        <input type="text" id="calendar" name="publishdate" class="example1" />
+                        <input id="calendar2" class="example1" value=""/>
+                        <input type="hidden" id="calendar" name="publishdate" class="example2">
                     </div>
                 </div>
+
 
                 <div class="row mt-5">
                     <div class="col-md-2 form-floating mb-2">
@@ -190,7 +182,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="row mt-5">
                     <div class="col-md-3 form-floating mb-2">
-                        <input type="text" class="form-control" name="collection" id="floatingInput"
+                        <input type="text" class="form-control" name="txtCollection" id="floatingInput"
                             placeholder="The-title-of-the-advertiser-collection">
                         <label for="floatingInput">
                             <p class="label-position">عنوان مجموعه آگهی دهنده</p>
@@ -212,13 +204,15 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="col-sm-3 state-fix-position">
                         <label for="state" class="form-label d-flex justify-content-center">استان</label>
-                        <select class="form-select state-select" name="province" id="state" name="select-list1">
+                        <select class="form-select state-select" id="state" name="selProvince">
                         <?php 
                             $query = "SELECT * FROM provinces";
                             $result = $conn->query($query);
+                            echo "<option>__انتخاب کنید__</option>";
                             while ($row = $result->fetch_assoc()) {
-                                $province = $row["p_name"];
-                                echo "<option>". "$province"."</option>";
+                                $province_id = $row["p_id"];
+                                $province_name = $row["p_name"];
+                                echo "<option value=\"" . $province_id . "\">".$province_name . "</option>";
                             }
                             ?>
                         </select>
@@ -226,9 +220,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="col-sm-3 state-fix-position">
                         <label for="city" class="form-label d-flex justify-content-center">شهر</label>
-                        <select class="form-select state-select" name="city" id="city" name="select-list1">
-                        <option>تهران</option>
-
+                        <select class="form-select state-select" name="selCity" id="city">
                         </select>
                     </div>
                 </div>
@@ -254,7 +246,6 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <button class="btn btn-success">ثبت نام</button>
                 </div>
 
-
             </form>
         </div>
     </section>
@@ -264,9 +255,63 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $(".example1").pDatepicker();
+ $('.example1').persianDatepicker({
+        altField: '#calendar',
+        onSelect: function (unix) {
+            var handler = document.getElementById("calendar");
+            handler.value = unix;
+        }
     });
+
+    $('.example1').persianDatepicker({
+            initialValueType: 'persian',
+            altField: '#calendar',
+            format: 'dddd D MMMM YYYY',
+            onSelect: function (unix) {
+                var handler = document.getElementById("calendar");
+                handler.value = unix;
+            }
+        });
+
+$(document).on("change","#state",function(){
+    $("#city").html("");
+    var pid = $(this).val();
+    if(pid > 0){
+        $.post("http://localhost/karyabi/ajax",{form:"getCitiesList",p_id:pid},function(data,status){
+            if(status === "success"){
+                //console.log(data);
+                if(data){
+                    if(isJson(data)){
+                        var result = $.parseJSON(data);
+                        //console.log(result);
+                        if(!$.isEmptyObject(result)){
+                            if(result['status'] === "success"){
+                                var data = result['data'];
+                                var html = "<option>__انتخاب کنید__</option>";
+                                for(content in data){
+                                    ct_id = result['data'][content]['ct_id'];
+                                    ct_name = result['data'][content]['ct_name'];
+                                    html += "<option value=\"" + ct_id + "\">" + ct_name + "</option>";
+                                }
+                                $("#city").html(html);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+});
+
+function isJson(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
 </script>
 
 </html>

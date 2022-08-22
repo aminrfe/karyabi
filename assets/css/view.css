@@ -27,8 +27,7 @@ body {
 }
 
 .contents {
-    display: flex;
-    justify-content: space-between;
+    clear: left;
 }
 
 .left-contents {
@@ -43,13 +42,13 @@ body {
     color: rgb(108, 108, 108);
 }
 
-
-
-
-.btn {
-    width: 30%;
-    margin-top: 50px;
+.btn-danger{
+    float:left;
+    width: 120px;
 }
+
+
+
 
 .labels{
     background-color:rgb(182, 182, 182);

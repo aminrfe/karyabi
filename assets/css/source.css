@@ -1,0 +1,29 @@
+*{
+    font-family: "yekan";
+    direction: rtl;
+    text-align: center;
+}
+
+body{
+    background-image: linear-gradient(to bottom, rgb(226, 226, 226) , rgb(50, 50, 50));
+    height:100vh;
+}
+
+.table-bordered{
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+td{
+    width:0%;
+}
+
+.body-color{
+    background-color:rgb(246, 246, 246);
+    width: 0;
+}
+.btn{
+    margin:5px;
+    width:80px;
+}
