@@ -78,78 +78,89 @@ else {
 
 <body>
 
-    <section class="container-fluid">
-        <h3 class="d-flex justify-content-center mt-5">صفحه کاربران </h3>
-        <div class="table-responsive mt-5">
-            <table class="table table-bordered">
-                <thead class="table-dark col-md-12">
-                    <tr>
-                        <th>ردیف</th>
-                        <th>نام</th>
-                        <th>نام خانوادگی</th>
-                        <th>نام کاربری</th>
-                        <th>رمز عبور</th>
-                        <th>تاریخ درج</th>
-                        <th>عملیات</th>
-                    </tr>
-                </thead>
-                <tbody class="body-color">
-                    <?php if (count($rows) > 0) {
+    <h3 class="d-flex justify-content-center mt-5">صفحه کاربران </h3>
+
+    <section class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="table-responsive mt-5">
+                    <table class="table table-bordered">
+                        <thead class="table-dark col-md-12">
+                            <tr>
+                                <th>ردیف</th>
+                                <th>نام</th>
+                                <th>نام خانوادگی</th>
+                                <th>نام کاربری</th>
+                                <th>رمز عبور</th>
+                                <th>تاریخ درج</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody class="body-color">
+                            <?php if (count($rows) > 0) {
                         $i = 1;
                         foreach ($rows as $row) { ?>
-                    <tr>
-                        <td><?php echo $i?></td>
-                        <td><?php echo $row["u_firstname"]?></td>
-                        <td><?php echo $row["u_lastname"]?></td>
-                        <td><?php echo $row["u_username"]?></td>
-                        <td><?php echo base64_decode($row["u_password"])?></td>
-                        <td>
-                            <?php echo jdate('l j F Y', $row["u_date"]);?>
-                        </td>
-                        <td>
-                            <a href='edit-user/<?php echo $row['u_id']?>'><button class="btn btn-dark"><i class="fa-regular fa-pen-to-square"></i> ویرایش</button></a>
-                            <a href='del-user/<?php echo $row['u_id']?>'><button class="btn btn-danger"><i class="fa-regular fa-trash-can"></i> حذف </button></a>
-                        </td>
-                    </tr>
-                    <?php $i++; } } ?>
-                    <tr>
-                        <td class="pt-4">افزودن کاربر</td>
-                        <form method="post" action="users">
-                            <td class="pt-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="sourceInput" name="firstname" placeholder="...">
-                                    <label for="sourceInput" class="sorce-label">...</label>
-                                </div>
-                            </td>
-                            <td class="pt-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="sourceInput" name="lastname" placeholder="...">
-                                    <label for="sourceInput" class="sorce-label">...</label>
-                                </div>
-                            </td>
-                            <td class="pt-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="sourceInput" name="username" placeholder="...">
-                                    <label for="sourceInput" class="sorce-label">...</label>
-                                </div>
-                            </td>
-                            <td class="pt-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="sourceInput" name="password" placeholder="...">
-                                    <label for="sourceInput" class="sorce-label">...</label>
-                                </div>
-                            </td>
-                            <td class="pt-3">
-                            </td>
-                            <td class="pt-3">
-                                <button class="btn btn-primary btn1"><i class="fa-solid fa-check"></i> ثبت </button>
-                            </td>
-                        </tr>
-                    </form>
-                </tbody>
+                            <tr>
+                                <td><?php echo $i?></td>
+                                <td><?php echo $row["u_firstname"]?></td>
+                                <td><?php echo $row["u_lastname"]?></td>
+                                <td><?php echo $row["u_username"]?></td>
+                                <td><?php echo base64_decode($row["u_password"])?></td>
+                                <td>
+                                    <?php echo jdate('l j F Y', $row["u_date"]);?>
+                                </td>
+                                <td>
+                                    <a href='edit-user/<?php echo $row['u_id']?>'><button class="btn btn-dark"><i
+                                                class="fa-regular fa-pen-to-square"></i> ویرایش</button></a>
+                                    <a href='del-user/<?php echo $row['u_id']?>'><button class="btn btn-danger"><i
+                                                class="fa-regular fa-trash-can"></i> حذف </button></a>
+                                </td>
+                            </tr>
+                            <?php $i++; } } ?>
+                            <tr>
+                                <td class="pt-4">افزودن کاربر</td>
+                                <form method="post" action="users">
+                                    <td class="pt-3">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="sourceInput" name="firstname"
+                                                placeholder="...">
+                                            <label for="sourceInput" class="sorce-label">...</label>
+                                        </div>
+                                    </td>
+                                    <td class="pt-3">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="sourceInput" name="lastname"
+                                                placeholder="...">
+                                            <label for="sourceInput" class="sorce-label">...</label>
+                                        </div>
+                                    </td>
+                                    <td class="pt-3">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="sourceInput" name="username"
+                                                placeholder="...">
+                                            <label for="sourceInput" class="sorce-label">...</label>
+                                        </div>
+                                    </td>
+                                    <td class="pt-3">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="sourceInput" name="password"
+                                                placeholder="...">
+                                            <label for="sourceInput" class="sorce-label">...</label>
+                                        </div>
+                                    </td>
+                                    <td class="pt-3">
+                                    </td>
+                                    <td class="pt-3">
+                                        <button class="btn btn-primary btn1"><i class="fa-solid fa-check"></i> ثبت
+                                        </button>
+                                    </td>
+                            </tr>
+                            </form>
+                        </tbody>
 
-            </table>
-
+                    </table>
+                </div>
+            </div>
         </div>
     </section>
 

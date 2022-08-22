@@ -4,7 +4,6 @@ require('config.php');
 require('validation.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
   if (isset($_POST["username"]) && isset($_POST["password"])) {
     $validation = [
       'username'=>['required','isEmpty|isEnglish','نام کاربری الزامی است|نام کاربری باید انگلیسی باشد'],
@@ -32,12 +31,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             setcookie("username", "");
             setcookie("password", "");
           }
-        }
-        else 
-          $errors["username"] = "نام كاربري يا رمز عبور صحيح نيست";
-
         header('Location:navbar');
-      }     
+      }
+      else 
+        $errors["username"] = "نام كاربري يا رمز عبور صحيح نيست";
+    }
   }
 }
 
@@ -96,9 +94,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                           </div>
                         </div>
                     
-                        <div class="col mt-2">
-                          <a href="#!" class="forget-password">فراموشی رمز عبور</a>
-                        </div>
+                        <!-- <div class="col mt-2"> -->
+                          <!-- <a href="#!" class="forget-password">فراموشی رمز عبور</a> -->
+                        <!-- </div> -->
                       </div>
                 </form>
             </div>

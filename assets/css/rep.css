@@ -5,6 +5,7 @@
 
 body{
     background-image: linear-gradient(to bottom,rgb(176, 176, 176),rgb(133, 133, 227));
+    height: max-content;
 }
 
 

@@ -238,6 +238,7 @@ else {
 
 
                     <div class="col-sm-6 form-group shadow-textarea mt-5">
+                    <label for="Textarea"></label>
                         <textarea class="form-control mt-2" id="Textarea" name="labels" rows="3" placeholder="برچسب"><?php echo $adver["ad_labels"]?></textarea>
                     </div>
                 </div>

@@ -97,7 +97,7 @@ else {
                             <label for="floatinglastname">نام خانوادگی</label>
                         </div>
                         <?php
-                        if (isset($errors) && array_key_exists("firstname", $errors)) {
+                        if (isset($errors) && array_key_exists("lastname", $errors)) {
                             $lastnameErr = $errors["lastname"];
                             echo "<span style='color:red'>$lastnameErr</span>";
                         }

@@ -14,43 +14,42 @@ elseif (isset($_SESSION["start"]) && time() > $_SESSION['expire']) {
   die();
 }
 elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
-    var_dump($_POST);
     if (isset($_POST["source"]) && isset($_POST["publishdate"]) && isset($_POST["category"]) && isset($_POST["title"]) && isset($_POST["selProvince"]) && isset($_POST["selCity"])) {
         $validation = [
-        'category'=>['required','isEmpty|isPersian','دسته بندي آگهی الزامی است|دسته بندي آگهی باید فارسی باشد'],
-        'title'=>['required','isEmpty|isPersian','عنوان آگهی الزامی است|عنوان آگهی باید فارسی باشد'],
-        'phone'=>['optional','isEnglish|checkPhone','شماره موبايل/تلفن باید انگليسي باشد|شماره موبايل/تلفن صحيح نيست']
+            'category'=>['required','isEmpty|isPersian','دسته بندي آگهی الزامی است|دسته بندي آگهی باید فارسی باشد'],
+            'title'=>['required','isEmpty|isPersian','عنوان آگهی الزامی است|عنوان آگهی باید فارسی باشد'],
+            'phone'=>['optional','isEnglish|checkPhone','شماره موبايل/تلفن باید انگليسي باشد|شماره موبايل/تلفن صحيح نيست']
         ];
         $val = new validation();
         $errors = $val->validate($_POST, $validation);
         if (count($errors) == 0) {
  
-        $ad_source = $_POST["source"];
-        $publish_date = $_POST["publishdate"] / 1000;
-        $salary = $_POST["salary"];
-        $min_salary = $_POST["minsalary"];
-        $max_salary = $_POST["maxsalary"];
-        $category = $_POST["category"];
-        $title = $_POST["title"];
-        $startworkhour = $_POST["startworkhour"];
-        $finishworkhour = $_POST["finishworkhour"];
-        $phone = $_POST["phone"];
-        $collection = $_POST["txtCollection"];
-        $details = $_POST["details"];
-        $ad_province = $_POST["selProvince"];
-        $ad_city = $_POST["selCity"];
-        $address = $_POST["address"];
-        $labels = $_POST["labels"];
-        $insertdate = time();
+            $ad_source = $_POST["source"];
+            $publish_date = $_POST["publishdate"] / 1000;
+            $salary = $_POST["salary"];
+            $min_salary = $_POST["minsalary"];
+            $max_salary = $_POST["maxsalary"];
+            $category = $_POST["category"];
+            $title = $_POST["title"];
+            $startworkhour = $_POST["startworkhour"];
+            $finishworkhour = $_POST["finishworkhour"];
+            $phone = $_POST["phone"];
+            $collection = $_POST["txtCollection"];
+            $details = $_POST["details"];
+            $ad_province = $_POST["selProvince"];
+            $ad_city = $_POST["selCity"];
+            $address = $_POST["address"];
+            $labels = $_POST["labels"];
+            $insertdate = time();
 
-        $query = "INSERT INTO advertisings (ad_source, ad_publishdate, ad_salary, ad_minsalary, ad_maxsalary, ad_category, ad_title, ad_startworkhour, ad_finishworkhour, ad_phone, ad_collection, ad_details, ad_province, ad_city, ad_address, ad_labels, ad_insertdate) 
-        VALUES ('$ad_source','$publish_date','$salary','$min_salary','$max_salary','$category','$title','$startworkhour','$finishworkhour','$phone','$collection','$details','$ad_province','$ad_city','$address','$labels','$insertdate')";
-        $result = $conn->query($query); 
-        if ($result) {
-            header('Location:navbar');    
+            $query = "INSERT INTO advertisings (ad_source, ad_publishdate, ad_salary, ad_minsalary, ad_maxsalary, ad_category, ad_title, ad_startworkhour, ad_finishworkhour, ad_phone, ad_collection, ad_details, ad_province, ad_city, ad_address, ad_labels, ad_insertdate) 
+            VALUES ('$ad_source','$publish_date','$salary','$min_salary','$max_salary','$category','$title','$startworkhour','$finishworkhour','$phone','$collection','$details','$ad_province','$ad_city','$address','$labels','$insertdate')";
+            $result = $conn->query($query); 
+            if ($result) {
+                header('Location:navbar');    
+            }
         }
     }
-}
 }
 
 

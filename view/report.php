@@ -48,7 +48,7 @@ else {
     <section class="container">
         <h3 class="rep-txt">صفحه گزارش</h3>
 
-        <div class="table-responsive">
+        <div class="table-responsive mb-4">
             <table class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
