@@ -4,13 +4,13 @@
 }
 
 body{
-    background-color: rgb(227, 196, 255);
+    background-image: linear-gradient(to bottom,rgb(176, 176, 176),rgb(133, 133, 227));
 }
 
 
 .rep-txt{
     text-align: center;
-    margin: 50px;
+    margin-top:40px;
 }
 
 .table-bordered{

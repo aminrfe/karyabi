@@ -5,8 +5,8 @@
 }
 
 body{
-    height:max-content;
-    background-image: linear-gradient(to bottom, rgb(122, 187, 193) , rgb(220, 220, 220));
+    /* background-image: linear-gradient(to bottom,rgb(176, 176, 176),rgb(133, 133, 227)); */
+    background-color: red;
     background-repeat: repeat;
 }
 
