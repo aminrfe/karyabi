@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 21, 2022 at 11:10 AM
+-- Generation Time: Aug 31, 2022 at 11:06 AM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `advertising`
+-- Database: `karyabi`
 --
 
 -- --------------------------------------------------------
@@ -42,8 +42,8 @@ CREATE TABLE IF NOT EXISTS `advertisings` (
   `ad_phone` varchar(32) NOT NULL,
   `ad_collection` varchar(32) NOT NULL,
   `ad_details` text NOT NULL,
-  `ad_province` int(11) NOT NULL,
-  `ad_city` int(11) NOT NULL,
+  `ad_province` int(11) DEFAULT NULL,
+  `ad_city` int(11) DEFAULT NULL,
   `ad_address` varchar(128) NOT NULL,
   `ad_labels` text NOT NULL,
   `ad_insertdate` int(11) NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `advertisings` (
   KEY `adx_source` (`ad_source`),
   KEY `adx_province` (`ad_province`),
   KEY `adx_city` (`ad_city`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `advertising_sources` (
   `as_id` int(11) NOT NULL AUTO_INCREMENT,
   `as_name` varchar(32) NOT NULL,
   PRIMARY KEY (`as_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -752,7 +752,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `u_password` varchar(128) NOT NULL,
   `u_date` int(11) NOT NULL,
   PRIMARY KEY (`u_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
