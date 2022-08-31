@@ -19,11 +19,12 @@ else {
     if ($result->num_rows == 1) {
         $adver = $result->fetch_assoc();
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            var_dump($adver);
             if (isset($_POST["source"]) && isset($_POST["publishdate"]) && isset($_POST["category"]) && isset($_POST["title"]) && isset($_POST["province"]) && isset($_POST["city"])) {
                 $validation = [
                 'category'=>['required','isEmpty|isPersian','دسته بندي آگهی الزامی است|دسته بندي آگهی باید فارسی باشد'],
                 'title'=>['required','isEmpty|isPersian','عنوان آگهی الزامی است|عنوان آگهی باید فارسی باشد'],
+                'province'=>['required','isEmpty|isNumeric','استان آگهی الزامی است| استان را انتخاب کنید'],
+                'city'=>['required','isEmpty|isNumeric','شهر آگهی الزامی است|یک شهر را انتخاب کنید'],
                 'phone'=>['optional','isEnglish|checkPhone','شماره موبايل/تلفن باید انگليسي باشد|شماره موبايل/تلفن صحيح نيست']
                 ];
                 $val = new validation();

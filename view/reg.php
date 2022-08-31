@@ -18,6 +18,8 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
         $validation = [
             'category'=>['required','isEmpty|isPersian','دسته بندي آگهی الزامی است|دسته بندي آگهی باید فارسی باشد'],
             'title'=>['required','isEmpty|isPersian','عنوان آگهی الزامی است|عنوان آگهی باید فارسی باشد'],
+            'SelProvince'=>['required','isEmpty|isNumeric','استان آگهی الزامی است| استان را انتخاب کنید'],
+            'SelCity'=>['required','isEmpty|isNumeric','شهر آگهی الزامی است|یک شهر را انتخاب کنید'],
             'phone'=>['optional','isEnglish|checkPhone','شماره موبايل/تلفن باید انگليسي باشد|شماره موبايل/تلفن صحيح نيست']
         ];
         $val = new validation();
